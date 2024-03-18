@@ -24,7 +24,7 @@ func run(stdin io.Reader, stdout io.Writer, stderr io.Writer, args []string) err
 	if dark, err := darkmode.IsDarkMode(); err == nil && dark {
 		os.Setenv("BAT_THEME", "Visual Studio Dark+")
 	} else if err == nil {
-		os.Setenv("BAT_THEME", "Visual Studio Light+")
+		os.Setenv("BAT_THEME", "GitHub")
 	} else {
 		return fmt.Errorf("detect dark mode: %w", err)
 	}
