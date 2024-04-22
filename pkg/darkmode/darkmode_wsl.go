@@ -32,7 +32,7 @@ func isDarkModeWSL() (bool, error) {
 
 	buf := make([]byte, 1)
 	go func() {
-		if _, err := stdout.Read(buf); err != nil {
+		if _, err := stdout.Read(buf); err != nil && err != io.EOF {
 			panic(fmt.Errorf("read stdout: %w", err))
 		}
 	}()
