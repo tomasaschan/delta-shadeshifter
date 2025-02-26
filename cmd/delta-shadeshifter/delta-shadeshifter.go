@@ -1,4 +1,4 @@
-package main
+package deltashadeshifter
 
 import (
 	"fmt"
@@ -9,18 +9,7 @@ import (
 	"github.com/tomasaschan/delta-shadeshifter/pkg/darkmode"
 )
 
-func main() {
-	if err := run(os.Stdin, os.Stdout, os.Stderr, os.Args[1:]); err != nil {
-		if e, ok := err.(*exec.ExitError); ok {
-			os.Exit(e.ExitCode())
-		}
-
-		fmt.Fprintf(os.Stderr, "delta-shadeshifter: %v\n", err)
-		os.Exit(1)
-	}
-}
-
-func run(stdin io.Reader, stdout io.Writer, stderr io.Writer, args []string) error {
+func Run(stdin io.Reader, stdout io.Writer, stderr io.Writer, args []string) error {
 	if dark, err := darkmode.IsDarkMode(); err == nil && dark {
 		os.Setenv("BAT_THEME", "Visual Studio Dark+")
 	} else if err == nil {
